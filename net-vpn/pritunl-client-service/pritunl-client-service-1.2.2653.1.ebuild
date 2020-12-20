@@ -15,13 +15,15 @@ DEPEND=""
 RDEPEND="${DEPEND}"
 BDEPEND=""
 
+inherit eutils golang-build
+
 src_unpack() {
 	unpack pritunl-client-electron-${PV}.tar.gz
 	mv ${WORKDIR}/pritunl-client-electron-${PV}/service ${S}
 	pushd ${S}
-	GOPATH="${WORKDIR}/${P}:$(get_golibdir_gopath)" \
-		GOCACHE="${T}/go-cache" \
-		go get -d || die
+	GOPATH="${WORKDIR}/${P}:$(get_golibdir_gopath)"
+	GOCACHE="${T}/go-cache"
+	go get -d || die
 }
 
 src_prepare() {
