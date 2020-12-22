@@ -5,9 +5,8 @@ EAPI=7
 
 DESCRIPTION=""
 HOMEPAGE=""
-SRC_URI="https://github.com/pritunl/pritunl-client-electron/archive/${PV}.tar.gz -> pritunl-client-electron-${PV}.tar.gz"
 
-inherit eutils golang-build golang-vcs
+inherit eutils golang-build golang-vcs-snapshot
 
 LICENSE=""
 SLOT="0"
@@ -29,6 +28,9 @@ EGO_PN="github.com/dropbox/godropbox/errors
 	github.com/pritunl/pritunl-client-electron/service/utils
 	github.com/pritunl/pritunl-client-electron/service/watch
 	github.com/sirupsen/logrus"
+
+SRC_URI="https://github.com/pritunl/pritunl-client-electron/archive/${PV}.tar.gz -> pritunl-client-electron-${PV}.tar.gz
+${EGO_VENDOR_URI}"
 
 src_unpack() {
 	unpack pritunl-client-electron-${PV}.tar.gz
