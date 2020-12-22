@@ -16,8 +16,7 @@ DEPEND=""
 RDEPEND="${DEPEND}"
 BDEPEND=""
 
-EGO_PN="github.com/dropbox/godropbox/errors
-	github.com/gin-gonic/gin
+EGO_PN="
 	github.com/pritunl/pritunl-client-electron/service/auth
 	github.com/pritunl/pritunl-client-electron/service/autoclean
 	github.com/pritunl/pritunl-client-electron/service/constants
@@ -26,9 +25,12 @@ EGO_PN="github.com/dropbox/godropbox/errors
 	github.com/pritunl/pritunl-client-electron/service/logger
 	github.com/pritunl/pritunl-client-electron/service/profile
 	github.com/pritunl/pritunl-client-electron/service/utils
-	github.com/pritunl/pritunl-client-electron/service/watch
-	github.com/sirupsen/logrus"
-
+	github.com/pritunl/pritunl-client-electron/service/watch"
+EGO_VENDOR=(
+	"github.com/sirupsen/logrus"
+	"github.com/dropbox/godropbox/errors"
+	"github.com/gin-gonic/gin"
+)
 SRC_URI="https://github.com/pritunl/pritunl-client-electron/archive/${PV}.tar.gz -> pritunl-client-electron-${PV}.tar.gz
 ${EGO_VENDOR_URI}"
 
