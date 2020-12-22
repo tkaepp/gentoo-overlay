@@ -7,7 +7,7 @@ DESCRIPTION=""
 HOMEPAGE=""
 SRC_URI="https://github.com/pritunl/pritunl-client-electron/archive/${PV}.tar.gz -> pritunl-client-electron-${PV}.tar.gz"
 
-inherit eutils golang-build golang-vcs.eclass
+inherit eutils golang-build golang-vcs
 
 LICENSE=""
 SLOT="0"
