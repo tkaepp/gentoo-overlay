@@ -109,9 +109,12 @@ SRC_URI="https://github.com/pritunl/pritunl-client-electron/archive/${PV}.tar.gz
 ${EGO_SUM_SRC_URI}"
 
 src_unpack() {
-#	unpack pritunl-client-electron-${PV}.tar.gz
-#	rm -v -r !\("service"\)
+	#cd service
+	unpack pritunl-client-electron-${PV}.tar.gz
+	cd ${WORKDIR}/pritunl-client-electron-${PV}/service
 	go-module_src_unpack
+#	rm -v -r !\("service"\)
+	#
 #	golang-vcs-snapshot_src_unpack
 #	pushd "${S}/service"
 #	cd "${S}/service"
