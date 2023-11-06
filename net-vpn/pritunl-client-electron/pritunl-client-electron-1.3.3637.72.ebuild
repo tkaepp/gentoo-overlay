@@ -13,21 +13,28 @@ KEYWORDS="~amd64"
 
 DEPEND=""
 RDEPEND="${DEPEND}"
-BDEPEND=""
+BDEPEND="net-libs/nodejs[npm]"
 PYTHON_COMPAT=( python3_{11,12} )
-inherit go-module git-r3 distutils-r1
+inherit git-r3 unpacker
+S="${WORKDIR}/"
 
-# for golang-build
-EGO_PN=github.com/pritunl/pritunl-client-electron/service
-EGIT_REPO_URI="https://github.com/tkaepp/pritunld.git"
+SRC_URI="https://github.com/pritunl/${PN}/releases/download/${PV}/${PN}_${PV}-0ubuntu1.jammy_amd64.deb"
 
-src_compile() {
-	go build -C service -v -o bin/pritunld || die
+DESTDIR="/opt/${PN}"
+
+src_unpack() {
+    unpack_deb ${A}
 }
-#
+
 src_install() {
-	dobin service/bin/pritunld
-	# install the init.d script
-	newinitd "${FILESDIR}/pritunld.rc" pritunld
+	# exeinto ${DESTDIR}
+	# doexe ${DESTDIR}/usr/lib/pritunl_client_electron/Pritunl
+
+	insinto "${DESTDIR}"
+	insopts -m0755
+	doins -r .
+
+	dosym ${DESTDIR}/usr/lib/pritunl_client_electron/Pritunl /usr/bin/pritunl-client-electron
+
+	default
 }
-#
