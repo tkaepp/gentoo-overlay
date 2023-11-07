@@ -15,7 +15,7 @@ DEPEND="net-vpn/pritunl-client-electron-service
 		net-vpn/pritunl-client-electron-cli"
 RDEPEND="${DEPEND}"
 BDEPEND=""
-inherit unpacker
+inherit unpacker desktop
 S="${WORKDIR}/"
 
 SRC_URI="https://github.com/pritunl/${PN}/releases/download/${PV}/${PN}_${PV}-0ubuntu1.jammy_amd64.deb"
@@ -26,6 +26,16 @@ src_unpack() {
     unpack_deb ${A}
 }
 
+src_prepare(){
+	
+	# fix .desktop exec location
+	sed -i "/Exec/s:/usr/lib/pritunl_client_electron/Pritunl:${DESTDIR}/usr/lib/pritunl_client_electron/Pritunl:" \
+		${S}usr/share/applications/pritunl-client-electron.desktop ||
+		die "fixing of exec location on .desktop failed"
+
+	default
+}
+
 pkg_preinst(){
 	# remove the /usr/bin binaries from the deb. symlinking the electron app directly into the /opt
 	# cli and service binaries are installed from source through th packages in DEPEND
@@ -33,6 +43,9 @@ pkg_preinst(){
 }
 
 src_install() {
+	doicon -s 256 "usr/share/icons/hicolor/256x256/apps/pritunl_client_electron.png"
+	domenu "usr/share/applications/${PN}.desktop"
+
 	insinto "${DESTDIR}"
 	insopts -m0755
 	doins -r .
