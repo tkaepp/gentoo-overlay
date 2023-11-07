@@ -15,7 +15,6 @@ DEPEND="net-vpn/pritunl-client-electron-service
 		net-vpn/pritunl-client-electron-cli"
 RDEPEND="${DEPEND}"
 BDEPEND=""
-PYTHON_COMPAT=( python3_{11,12} )
 inherit unpacker
 S="${WORKDIR}/"
 
@@ -25,6 +24,12 @@ DESTDIR="/opt/${PN}"
 
 src_unpack() {
     unpack_deb ${A}
+}
+
+pkg_preinst(){
+	# remove the /usr/bin binaries from the deb. symlinking the electron app directly into the /opt
+	# cli and service binaries are installed from source through th packages in DEPEND
+	rm -r ${DESTDIR}/usr/bin
 }
 
 src_install() {
