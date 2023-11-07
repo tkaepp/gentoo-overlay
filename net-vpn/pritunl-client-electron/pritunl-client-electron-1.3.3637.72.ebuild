@@ -11,11 +11,12 @@ LICENSE=""
 SLOT="0"
 KEYWORDS="~amd64"
 
-DEPEND=""
+DEPEND="net-vpn/pritunl-client-electron-service
+		net-vpn/pritunl-client-electron-cli"
 RDEPEND="${DEPEND}"
-BDEPEND="net-libs/nodejs[npm]"
+BDEPEND=""
 PYTHON_COMPAT=( python3_{11,12} )
-inherit git-r3 unpacker
+inherit unpacker
 S="${WORKDIR}/"
 
 SRC_URI="https://github.com/pritunl/${PN}/releases/download/${PV}/${PN}_${PV}-0ubuntu1.jammy_amd64.deb"
@@ -27,9 +28,6 @@ src_unpack() {
 }
 
 src_install() {
-	# exeinto ${DESTDIR}
-	# doexe ${DESTDIR}/usr/lib/pritunl_client_electron/Pritunl
-
 	insinto "${DESTDIR}"
 	insopts -m0755
 	doins -r .
