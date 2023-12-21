@@ -11,9 +11,6 @@ LICENSE=""
 SLOT="0"
 KEYWORDS="~amd64"
 
-DEPEND="net-vpn/pritunl-client-electron"
-RDEPEND="${DEPEND}"
-BDEPEND=""
 PYTHON_COMPAT=( python3_{11,12} )
 inherit go-module git-r3 distutils-r1
 
