@@ -19,9 +19,9 @@ EGO_PN=github.com/pritunl/pritunl-client-electron/cli
 EGIT_REPO_URI="https://github.com/tkaepp/pritunld.git"
 
 src_compile() {
-	go build -C cli -v -o bin/pritunld || die
+	go build -C cli -v -o bin/pritunl-client || die
 }
 
 src_install() {
-	dobin cli/bin/pritunld
+	dobin cli/bin/pritunl-client
 }
