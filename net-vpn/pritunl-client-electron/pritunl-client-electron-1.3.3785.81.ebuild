@@ -11,8 +11,7 @@ LICENSE=""
 SLOT="0"
 KEYWORDS="~amd64"
 
-DEPEND="net-vpn/pritunl-client-electron-service
-		net-vpn/pritunl-client-electron-cli"
+DEPEND="net-vpn/pritunl-client-electron-service"
 RDEPEND="${DEPEND}"
 BDEPEND=""
 inherit unpacker desktop
