@@ -4,7 +4,7 @@
  
 name="pritunld daemon"
 description=""
-command=/usr/local/bin/pritunld
+command=/usr/bin/pritunld
 command_args="${pritunld_args}"
  
 depend() {
