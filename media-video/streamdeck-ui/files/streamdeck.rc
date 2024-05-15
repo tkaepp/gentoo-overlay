@@ -1,0 +1,20 @@
+#!/sbin/openrc-run
+# Copyright 2020 Gentoo Authors
+# Distributed under the terms of the GNU General Public License v2
+ 
+name="streamdeck daemon"
+description=""
+command=/usr/bin/streamdeck
+command_args="--no-ui"
+
+start() {
+  ebegin "Starting ${SVDNAME}"
+  start-stop-daemon --background --exec $command
+  eend $?
+}
+ 
+stop() {
+  ebegin "Stopping ${SVDNAME}"
+  start-stop-daemon --stop --quiet --exec $command
+  eend $?
+}

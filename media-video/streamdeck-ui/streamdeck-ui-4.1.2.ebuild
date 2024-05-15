@@ -5,7 +5,7 @@ EAPI=7
 
 PYTHON_COMPAT=( python3_{11..12} )
 DISTUTILS_USE_PEP517=poetry
-inherit distutils-r1
+inherit distutils-r1 udev desktop
 
 DESCRIPTION="A service, Web Interface, and UI for using a Stream Deck"
 HOMEPAGE="https://github.com/streamdeck-linux-gui/streamdeck-linux-gui"
@@ -24,10 +24,12 @@ IUSE=""
 
 RESTRICT="test"
 
-DEPEND="${PYTHON_DEPS}
+DEPEND="virtual/udev
+		${PYTHON_DEPS}
+		dev-python/importlib-metadata[${PYTHON_USEDEP}]
 		dev-python/filetype[${PYTHON_USEDEP}]
 		dev-python/pillow[${PYTHON_USEDEP}]
-		dev-python/pynput[${PYTHON_USEDEP}]
+		dev-python/evdev[${PYTHON_USEDEP}]
 		dev-python/pyside6[${PYTHON_USEDEP}]
 		dev-python/python-xlib[${PYTHON_USEDEP}]
 		media-gfx/cairosvg[${PYTHON_USEDEP}]
@@ -43,8 +45,25 @@ src_prepare() {
 }
 
 src_install() {
+	udev_newrules udev/60-streamdeck.rules 60-streamdeck.rules
+
+	make_desktop_entry ${PN} "Streamdeck GUI App" streamdeck "Video" 
+	
+	newinitd "${FILESDIR}/streamdeck.rc" streamdeck
+
+	
+
 	insinto /usr/share/streamdeck-ui
 	doins streamdeck_ui/logo.png
 	doins -r streamdeck_ui/fonts
 	distutils-r1_src_install
+}
+
+
+pkg_postinst() {
+        udev_reload
+}
+
+pkg_postrm() {
+        udev_reload
 }
