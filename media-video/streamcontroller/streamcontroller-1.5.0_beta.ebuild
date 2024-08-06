@@ -42,6 +42,13 @@ DEPEND="${RDEPEND}"
 # 	distutils-r1_src_prepare
 # }
 
+
+python_install() {
+    python_doscript streamcontroller
+    python_domodule *.py
+}
+
+
 src_install() {
 	udev_newrules udev.rules 60-streamcontroller.rules
 
@@ -53,7 +60,8 @@ src_install() {
 	insinto /usr/share/streamcontroller
 	# doins streamcontroller/logo.png
 	# doins -r streamcontroller/fonts
-	distutils-r1_src_install
+    python_foreach_impl python_install
+
 }
 
 
