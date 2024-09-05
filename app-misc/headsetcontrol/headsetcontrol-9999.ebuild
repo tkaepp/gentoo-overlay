@@ -35,6 +35,10 @@ src_prepare() {
 	cmake_src_prepare
 }
 
+src_install(){
+	udev_newrules "${FILESDIR}/70-headsets.rules" 70-headsets.rules
+}
+
 pkg_postinst() {
 	if use udev; then
 		udev_reload
