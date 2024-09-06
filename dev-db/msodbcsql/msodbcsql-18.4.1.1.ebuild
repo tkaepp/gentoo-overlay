@@ -1,9 +1,15 @@
-SRC_URI="https://packages.microsoft.com/debian/12/prod/pool/main/m/${PN}${PV%%.*}/${PN}${PV%%.*}_${PV}-1_amd64.deb"
+EAPI=8
 
+DESCRIPTION="Gentoo Ebuild installing the microsoft odbc driver for sql"
+HOMEPAGE="https://github.com/pritunl/pritunl-client-electron"
 LICENSE="Microsoft-ODBC"
 SLOT="18"
 KEYWORDS="-* ~amd64"
-IUSE=""
+
+inherit unpacker
+
+SRC_URI="https://packages.microsoft.com/debian/12/prod/pool/main/m/${PN}${PV%%.*}/${PN}${PV%%.*}_${PV}-1_amd64.deb"
+
 RESTRICT="bindist mirror"
 
 RDEPEND="dev-db/unixODBC
@@ -17,10 +23,12 @@ DOCS=( "usr/share/doc/msodbcsql${PV%%.*}/RELEASE_NOTES" )
 
 QA_PREBUILT="usr/lib64/${SO_NAME}"
 
+src_unpack() {
+    unpack_deb ${A}
+}
+
 src_prepare() {
 	default
-
-
 	# Change lib path
 	sed -i '/Driver/s|opt/microsoft/msodbcsql[0-9]*|usr|' \
 		"opt/microsoft/msodbcsql${PV%%.*}/etc/odbcinst.ini" \
