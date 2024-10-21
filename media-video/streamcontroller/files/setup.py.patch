@@ -1,0 +1,8 @@
+--- /dev/null	2024-09-23 09:02:55.486666710 +0200
++++ files/setup.py	2024-09-23 10:24:44.069050157 +0200
+@@ -0,0 +1,4 @@
++# setup.py file contents
++from setuptools import setup
++
++setup()
+\ No newline at end of file
