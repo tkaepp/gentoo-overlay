@@ -17,7 +17,7 @@ BDEPEND=""
 inherit unpacker desktop
 S="${WORKDIR}/"
 
-SRC_URI="https://github.com/pritunl/${PN}/releases/download/${PV}/${PN}_${PV}-0ubuntu1.jammy_amd64.deb"
+SRC_URI="https://github.com/pritunl/${PN}/releases/download/${PV}/${PN}_${PV}-0ubuntu1.noble_amd64.deb"
 
 DESTDIR="/opt/${PN}"
 
