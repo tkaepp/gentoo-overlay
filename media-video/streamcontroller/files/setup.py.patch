@@ -1,8 +1,14 @@
 --- /dev/null	2024-09-23 09:02:55.486666710 +0200
 +++ files/setup.py	2024-09-23 10:24:44.069050157 +0200
-@@ -0,0 +1,4 @@
+@@ -0,0 +1,10 @@
 +# setup.py file contents
 +from setuptools import setup
 +
-+setup()
++import os
++from setuptools import setup
++
++with open('requirements.txt') as f:
++    required = f.read().splitlines()
++
++setup(install_requires=required)
 \ No newline at end of file

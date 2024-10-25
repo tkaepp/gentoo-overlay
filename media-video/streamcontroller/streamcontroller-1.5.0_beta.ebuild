@@ -3,7 +3,8 @@
 
 EAPI=8
 
-DISTUTILS_USE_PEP517=no
+# DISTUTILS_USE_PEP517=no
+DISTUTILS_USE_PEP517=setuptools
 
 PYTHON_COMPAT=( python3_{11..12} )
 inherit distutils-r1 udev desktop
@@ -44,31 +45,33 @@ src_prepare() {
 	default
 }
 
-python_compile() {
-    # python_domodule main.py
-	distutils-r1_python_compile 
- }
+# src_compile() {
+#     distutils-r1_python_compile
+# }
 
 python_install() {
-    python_doscript streamcontroller
-    # python_domodule *.py
+    python_domodule main.py
+	distutils-r1_python_install
 }
 
 
-src_install() {
-	dobin bin/streamcontroller
-	# udev_newrules udev.rules 60-streamcontroller.rules
-
-	# make_desktop_entry ${PN} "Streamcontroller" streamcontroller "Video" 
+# src_install() {
+# 	# dobin bin/streamcontroller
 	
-	# newinitd "${FILESDIR}/streamdeck.rc" streamdeck
+# 	# python_domodule streamcontroller
+# 	# python_newscript main.py pynslcd
+# 	# udev_newrules udev.rules 60-streamcontroller.rules
+
+# 	# make_desktop_entry ${PN} "Streamcontroller" streamcontroller "Video" 
+	
+# 	# newinitd "${FILESDIR}/streamdeck.rc" streamdeck
 
 
-	# insinto /usr/share/streamcontroller
-	# doins streamcontroller/logo.png
-	# doins -r streamcontroller/fonts
-    distutils-r1_src_install
-}
+# 	# insinto /usr/share/streamcontroller
+# 	# doins streamcontroller/logo.png
+# 	# doins -r streamcontroller/fonts
+#     # distutils-r1_src_install
+# }
 
 
 pkg_postinst() {
