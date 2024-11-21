@@ -1,0 +1,8 @@
+[Unit]
+Description=Pritunl Client Daemon
+
+[Service]
+ExecStart=/usr/bin/pritunld
+
+[Install]
+WantedBy=multi-user.target

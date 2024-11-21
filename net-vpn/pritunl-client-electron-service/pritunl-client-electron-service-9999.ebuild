@@ -10,13 +10,15 @@ HOMEPAGE="https://github.com/pritunl/pritunl-client-electron"
 LICENSE=""
 SLOT="0"
 KEYWORDS="~amd64"
+IUSE="systemd"
 
 DEPEND="net-vpn/wireguard-tools
-		"
+		systemd? ( sys-apps/systemd )
+"
 RDEPEND="${DEPEND}"
 BDEPEND=""
 PYTHON_COMPAT=( python3_{11,12} )
-inherit go-module git-r3 distutils-r1
+inherit go-module git-r3 distutils-r1 systemd
 
 # for golang-build
 EGO_PN=github.com/pritunl/pritunl-client-electron/service
@@ -29,6 +31,10 @@ src_compile() {
 src_install() {
 	dobin service/bin/pritunld
 	# install the init.d script
-	newinitd "${FILESDIR}/pritunld.rc" pritunld
+	if use systemd; then
+		systemd_dounit "${FILESDIR}/pritunl-client.service"
+	else
+		newinitd "${FILESDIR}/pritunld.rc" pritunld
+	fi
 }
 #
