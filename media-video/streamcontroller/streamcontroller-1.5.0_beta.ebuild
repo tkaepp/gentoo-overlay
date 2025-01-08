@@ -37,12 +37,16 @@ RDEPEND="virtual/udev
 		dev-python/python-xlib[${PYTHON_USEDEP}]
 		media-gfx/cairosvg[${PYTHON_USEDEP}]
 		media-libs/elgato-streamdeck[${PYTHON_USEDEP}]
+		dev-python/loguru[${PYTHON_USEDEP}]
+		dev-python/pyusb[${PYTHON_USEDEP}]
 		"
 DEPEND="${RDEPEND}"
 
 src_prepare() {
 	eapply "${FILESDIR}"/setup.py.patch
 	default
+	sed -i '1s/^/#!\/usr\/bin\/env python\n/' main.py
+	sed -i 's/from src./from /g' main.py
 }
 
 # src_compile() {
@@ -50,8 +54,8 @@ src_prepare() {
 # }
 
 python_install() {
-    python_domodule main.py
 	distutils-r1_python_install
+	python_newscript main.py streamcontroller
 }
 
 
