@@ -13,7 +13,7 @@ DESCRIPTION=" An elegant Linux app for the Elgato Stream Deck with support for p
 HOMEPAGE="https://github.com/StreamController/StreamController"
 
 PV=
-SRC_URI="https://github.com/StreamController/StreamController/archive/refs/tags/1.5.0-beta.6.tar.gz -> ${P}.tar.gz"
+SRC_URI="https://github.com/StreamController/StreamController/archive/refs/tags/1.5.0-beta.7.tar.gz -> ${P}.tar.gz"
 KEYWORDS="~amd64"
 S="${WORKDIR}/StreamController-1.5.0-beta.6"
 
@@ -57,13 +57,13 @@ python_install() {
 
 # src_install() {
 # 	# dobin bin/streamcontroller
-	
+
 # 	# python_domodule streamcontroller
 # 	# python_newscript main.py pynslcd
 # 	# udev_newrules udev.rules 60-streamcontroller.rules
 
-# 	# make_desktop_entry ${PN} "Streamcontroller" streamcontroller "Video" 
-	
+# 	# make_desktop_entry ${PN} "Streamcontroller" streamcontroller "Video"
+
 # 	# newinitd "${FILESDIR}/streamdeck.rc" streamdeck
 
 
