@@ -46,7 +46,7 @@ src_prepare() {
 	eapply "${FILESDIR}"/setup.py.patch
 	default
 	sed -i '1s/^/#!\/usr\/bin\/env python\n/' main.py
-	sed -i 's/from src./from /g' main.py
+	#sed -i 's/from src./from /g' main.py
 }
 
 # src_compile() {

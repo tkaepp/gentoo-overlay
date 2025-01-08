@@ -8,4 +8,9 @@ from setuptools import setup
 with open('requirements.txt') as f:
     required = f.read().splitlines()
 
-setup(install_requires=required)
+setup(
+    name = streamcontroller,
+    packages=['streamcontroller'],
+    package_dir={'': 'src'},
+    install_requires=required
+)
