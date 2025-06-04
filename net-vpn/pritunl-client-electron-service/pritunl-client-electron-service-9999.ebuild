@@ -1,7 +1,7 @@
 # Copyright 2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
 DESCRIPTION="Gentoo Ebuild for the pritunl electron app and the background service"
 HOMEPAGE="https://github.com/pritunl/pritunl-client-electron"
