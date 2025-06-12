@@ -17,7 +17,7 @@ DEPEND="net-vpn/wireguard-tools
 "
 RDEPEND="${DEPEND}"
 BDEPEND=""
-PYTHON_COMPAT=( python3_{11,12} )
+PYTHON_COMPAT=( python3_{11,12,13} )
 DISTUTILS_USE_PEP517=setuptools
 inherit go-module git-r3 distutils-r1 systemd
 
