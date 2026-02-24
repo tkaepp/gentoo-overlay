@@ -45,6 +45,7 @@ src_install() {
 
     doexe /usr/lib/${PN}/Proton\ Meet\ Beta
     doexe /usr/lib/${PN}/chrome-sandbox
+    doexe /usr/lib/${PN}/chrome_crashpad_handler
     doexe /usr/bin/${PN}
 #
 #     exeinto "/usr/bin"
