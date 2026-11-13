@@ -111,5 +111,6 @@ src_configure() {
 src_install() {
     cargo_src_install --path crates/print-server/
 
+	newconfd "${FILESDIR}/print-server.conf" print-server
 	newinitd "${FILESDIR}/funny-feed-print-service.rc" print-server
 }
