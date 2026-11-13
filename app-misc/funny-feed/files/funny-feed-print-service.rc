@@ -1,0 +1,24 @@
+#!/sbin/openrc-run
+# Copyright 2020 Gentoo Authors
+# Distributed under the terms of the GNU General Public License v2
+ 
+name="print-server daemon"
+description=""
+command=/usr/bin/print-server
+command_args="${print-server_args}"
+ 
+depend() {
+  need net
+}
+ 
+start() {
+  ebegin "Starting ${SVDNAME}"
+  start-stop-daemon --background --exec $command
+  eend $?
+}
+ 
+stop() {
+  ebegin "Stopping ${SVDNAME}"
+  start-stop-daemon --stop --quiet --exec $command
+  eend $?
+}
